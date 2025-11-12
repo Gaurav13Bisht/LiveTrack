@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 public class KafkaProducerService {
 
     @Autowired
-    private KafkaTemplate<Integer, Integer> kafkaTemplate; // Data types denotes what type of data is used in its functions like send
+    private KafkaTemplate<Integer, String> kafkaTemplate; // Data types denotes what type of data is used in its functions like send
 
-    public boolean updateLocation(Integer remainingDistance){
+    public boolean updateLocation(String remainingDistance){
         try {
             kafkaTemplate.send(DeliveryConstants.TOPIC_NAME, remainingDistance);
         }

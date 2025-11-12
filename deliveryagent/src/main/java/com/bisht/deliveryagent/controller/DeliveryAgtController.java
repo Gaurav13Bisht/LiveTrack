@@ -18,7 +18,7 @@ public class DeliveryAgtController {
     private KafkaProducerService kafkaProducerService;
 
     @PostMapping("/location")
-    public ResponseEntity<?> updateLocation(@RequestParam Integer remainingDistance){
+    public ResponseEntity<?> updateLocation(@RequestParam String remainingDistance){
         return kafkaProducerService.updateLocation(remainingDistance) ?
                 new ResponseEntity<>("Updated", HttpStatus.ACCEPTED) :
                 new ResponseEntity<>("Not Updated", HttpStatus.BAD_REQUEST);
