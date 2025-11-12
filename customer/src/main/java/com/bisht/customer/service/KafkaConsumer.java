@@ -3,6 +3,7 @@ package com.bisht.customer.service;
 import org.springframework.kafka.annotation.DltHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.RetryableTopic;
+import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,15 @@ public class KafkaConsumer {
     // 1. If we dont use @RetryableTopic, retries still happens by with default attempt (9 in this kafka dependency version)
     // 2. We use @RetryableTopic to customise the retrying
     @KafkaListener(topics = "delivery-agt-topic", groupId = "group-1")
+    // Here groupId is consumer group name.
+    // Can mention partition id as well but not recommended since if this app gets replicated, mutliple
+    // consumer will read from same partition and result in duplicate processing
+    // @KafkaListener(
+    //    groupId = "group-1",
+    //    topicPartitions = {
+    //        @TopicPartition(topic = "delivery-agt-topic", partitions = {"0", "1"})
+    //    }
+    //)
     public void locationUpdate(String distance){
         if(Integer.parseInt(distance) < 0){
             throw new IllegalArgumentException("Distance is negative !!");

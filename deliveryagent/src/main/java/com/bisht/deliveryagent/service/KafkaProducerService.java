@@ -14,6 +14,8 @@ public class KafkaProducerService {
     public boolean updateLocation(String remainingDistance){
         try {
             kafkaTemplate.send(DeliveryConstants.TOPIC_NAME, remainingDistance);
+            // We can also mention partition number or key if want to send to a particular partition
+//            kafkaTemplate.send(DeliveryConstants.TOPIC_NAME, 0, 12, remainingDistance);
         }
         catch (Exception e){
             return false;
