@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "DeliveryUpdateAVRO",
+  "namespace": "com.bisht.deliveryagent.model",
+  "fields": [
+    { "name": "distanceRemaining", "type": "string" },
+    { "name": "driverName", "type": ["null", "string"], "default": null },
+    { "name": "estimatedTimeInMins", "type": ["null", "string"], "default": null },
+    { "name": "status", "type": ["null", "string"], "default": null }
+  ]
+}

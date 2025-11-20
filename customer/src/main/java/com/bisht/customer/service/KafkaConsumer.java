@@ -1,5 +1,8 @@
 package com.bisht.customer.service;
 
+import com.bisht.customer.model.DeliveryUpdate;
+import com.bisht.deliveryagent.model.DeliveryUpdateAVRO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.DltHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.RetryableTopic;
@@ -7,6 +10,7 @@ import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class KafkaConsumer {
 
@@ -27,11 +31,13 @@ public class KafkaConsumer {
     //        @TopicPartition(topic = "delivery-agt-topic", partitions = {"0", "1"})
     //    }
     //)
-    public void locationUpdate(String distance){
-        if(Integer.parseInt(distance) < 0){
-            throw new IllegalArgumentException("Distance is negative !!");
-        }
-        System.out.println("Delivery agent is only " + distance + "m away from your location !");
+//    public void locationUpdate(DeliveryUpdate deliveryUpdate){
+    public void locationUpdate(DeliveryUpdateAVRO deliveryUpdate){
+//        if(Integer.parseInt(distance) < 0){
+//            throw new IllegalArgumentException("Distance is negative !!");
+//        }
+//        System.out.println("Delivery agent is only " + distance + "m away from your location !");
+        log.info(deliveryUpdate.toString());
     }
 
 
