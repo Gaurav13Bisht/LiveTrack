@@ -48,7 +48,8 @@ public class KafkaConsumer {
     // will come here for further processing
     // 3. BY DEFAULT, the DLT topic is the main topic + "-dlt" so even if you want to handle each topic's
     // DLT separately, you can create kafka listeners with topic = "mainTopic-dlt".
-    public void dltHandler(String distance){
-        System.out.println("Message received in Dead Letter Topic! Distance was: " + distance);
+    // public void dltHandler(String distance){
+    public void dltHandler(DeliveryUpdateAVRO deliveryUpdate){
+        System.out.println("Message received in Dead Letter Topic! Distance was: " + deliveryUpdate.getDistance());
     }
 }
